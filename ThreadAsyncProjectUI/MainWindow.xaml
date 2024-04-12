@@ -7,6 +7,39 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBlock x:Name="textBlock"
+           Grid.Column="0"
+           FontSize="64"
+           Text="0"
+           HorizontalAlignment="Center"
+           VerticalAlignment="Center"/>
+        <TextBlock x:Name="textBlock2"
+   Grid.Column="1"
+   FontSize="64"
+   Text="0"
+   HorizontalAlignment="Center"
+   VerticalAlignment="Center"/>
+        <Button Margin="100 50"
+        Grid.Row="1"
+        Grid.Column="0"
+        x:Name="button"
+        Content="Stop"
+        FontSize="24"
+        Click="Button_Click"/>
+        <Button Margin="100 50"
+Grid.Row="1"
+Grid.Column="1"
+x:Name="startButton"
+Content="Start"
+FontSize="24"
+Click="startButton_Click"/>
     </Grid>
 </Window>
