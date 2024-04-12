@@ -5,8 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ThreadAsyncProjectUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" KeyDown="Window_KeyDown">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="textBlock"
+           Grid.Column="0"
+           FontSize="64"
+           Text="0"
+           HorizontalAlignment="Center"
+           VerticalAlignment="Center"/>
+
+        <Label HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+        Grid.Row="1"
+        Grid.Column="0"
+        x:Name="button"
+        Content="Press s to start/stop"
+        FontSize="50"/>
     </Grid>
 </Window>
