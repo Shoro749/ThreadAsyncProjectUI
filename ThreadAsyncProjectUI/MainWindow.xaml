@@ -7,6 +7,18 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Label x:Name="lb" Margin="200 25" Content = "Winner: ..." FontFamily="Arial" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Content="Horse 1" FontFamily="Arial" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="18"/>
+        <ProgressBar x:Name="horse1" Grid.Row="1" Margin="20 35"/>
+        <Label Content="Horse 2" FontFamily="Arial" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="18"/>
+        <ProgressBar x:Name="horse2" Grid.Row="2" Margin="20 35"/>
+        <Button x:Name="button" Grid.Row="3" Margin="200 32" Content="Start" FontFamily="Arial" FontSize="22" Click="Button_Click"/>
     </Grid>
 </Window>
