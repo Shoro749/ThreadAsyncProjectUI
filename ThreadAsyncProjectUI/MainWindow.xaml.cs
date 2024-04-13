@@ -18,29 +18,32 @@ namespace ThreadAsyncProjectUI
         {
             InitializeComponent();
             start = false;
-            Thread thread = new Thread(Thread1);
-            thread.Start();
         }
 
-        private void Window_KeyDown(object sender, KeyEventArgs e)
+        private async void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (char.ToLower(e.Key.ToString()[0]).ToString() == "s")
             {
                 start = !start;
+                if (start)
+                {
+                    GenerateNumbers();
+                }
             }
         }
 
-        private void Thread1()
+        private async Task GenerateNumbers()
         {
-            Random rnd = new Random();
             while (true)
             {
-                Thread.Sleep(1000);
-                if (start == false) continue;
+                Random rnd = new Random();
                 Dispatcher.Invoke(() =>
                 {
                     textBlock.Text = rnd.Next().ToString();
                 });
+                await Task.Delay(1000);
+
+                if (!start) { return; }
             }
         }
     }
