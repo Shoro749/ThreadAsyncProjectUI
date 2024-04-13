@@ -7,6 +7,23 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.45*"/>
+            <RowDefinition Height="0.45*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock x:Name="Arr" Margin="200 25" FontSize="18" Text="Array: "/>
+        <TextBlock x:Name="result" Grid.Row="1" FontSize="18" Margin="200 25"/>
         
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBox x:Name="tb" Margin="200 25" FontSize="18" Grid.ColumnSpan="2"/>
+            <Button x:Name="button" Content="Click Me" Margin="100 25" FontSize="18" Grid.Row="1" Click="Button_Click"/>
+        </Grid>
     </Grid>
 </Window>
