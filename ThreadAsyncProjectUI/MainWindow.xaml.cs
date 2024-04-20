@@ -19,17 +19,20 @@ namespace ThreadAsyncProjectUI
     public partial class MainWindow : Window
     {
         CancellationTokenSource cts = new CancellationTokenSource();
-        private string word = "Hello";
+        private string word;
         private int checked_ = 0;
         private object locker = new object();
         private int countFiles;
+
         public MainWindow()
         {
             InitializeComponent();
+            pb.Value = 0;
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
+            word = tb_word.Text;
             List<string> files = new List<string>();
 
             await Task.Run(() =>
@@ -47,7 +50,6 @@ namespace ThreadAsyncProjectUI
             {
                 using (StreamReader sr = new StreamReader(fs))
                 {
-                    //textBlock.Text = await sr.ReadToEndAsync();
                     while (!sr.EndOfStream)
                     {
                         string? text = await sr.ReadLineAsync();
@@ -62,33 +64,15 @@ namespace ThreadAsyncProjectUI
             lock (locker)
             {
                 checked_ += 1;
+                Dispatcher.Invoke(() => pb.Value = (checked_ * 100) / countFiles);
                 Dispatcher.Invoke(() => l_count.Content = $"{checked_}/{countFiles}");
             }
-            Dispatcher.Invoke(() => textBlock.Text += $"{System.IO.Path.GetFileName(path)}: {count}{Environment.NewLine}");
+            Dispatcher.Invoke(() => textBlock.Text += $"{System.IO.Path.GetFileName(path)}: {count} | {path}{Environment.NewLine}");
         }
 
         private void GetFileName(string name)
         {
             Dispatcher.Invoke(() => textBlock.Text += System.IO.Path.GetFileName(name) + Environment.NewLine);
-        }
-
-        private async Task TestCancellation(CancellationToken token)
-        {
-            await Task.Run(() =>
-            {
-                int i = 0;
-                while (true)
-                {
-                    if (token.IsCancellationRequested)
-                    {
-                        // cancellation login
-                        Dispatcher.Invoke(() => textBlock.Text = "Done");
-                        return;
-                    }
-                    Dispatcher.Invoke(() => textBlock.Text = (i++).ToString());
-                    Thread.Sleep(100);
-                }
-            });
         }
 
         private void GetFolders(string path, List<string> files)
@@ -103,41 +87,5 @@ namespace ThreadAsyncProjectUI
                 GetFolders(folder, files);
             }
         }
-
-        //private async Task SearchWord(string path)
-        //{
-        //    try
-        //    {
-        //        foreach (string file in Directory.EnumerateFiles(path))
-        //        {
-        //            textBlock.Text += file;
-        //            //await SearchingInFile(file);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //    }
-        //}
-
-        //private async Task SearchingInFile(string path)
-        //{
-        //    using (StreamReader reader = new StreamReader(path))
-        //    {
-        //        string text = await reader.ReadToEndAsync();
-        //        foreach (var letter in text)
-        //        {
-        //            textBlock.Text += letter;
-        //        }
-        //    }
-        //}
-
-        //private async Task<string> ReaderAsync()
-        //{
-        //    using (StreamReader reader = new StreamReader(path.Text))
-        //    {
-        //        return await reader.ReadToEndAsync();
-        //    }
-        //}
     }
 }

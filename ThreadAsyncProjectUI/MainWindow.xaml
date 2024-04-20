@@ -9,23 +9,33 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="0.7*"/>
         </Grid.RowDefinitions>
 
-        <Label x:Name="l_count" Margin="50,10,671,172" FontSize="22" FontFamily="Arial"/>
-        <ScrollViewer Margin="50">
+        <Label x:Name="l_count" Margin="50,10,50,198" FontSize="22" FontFamily="Arial"/>
+        <ProgressBar x:Name="pb" Height="30" Margin="50,94,50,133" Background="#FF848484" Foreground="#FF28B324" BorderBrush="Black">
+            <ProgressBar.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </ProgressBar.RenderTransform>
+        </ProgressBar>
+        <ScrollViewer Margin="50,107,50,10">
             <TextBlock x:Name="textBlock" FontSize="22" FontFamily="Arial"/>
         </ScrollViewer>
-        <Button Grid.Row="1" Margin="200 25" Content="Read file" FontSize="22" FontFamily="Arial" Click="Button_Click"/>
-        
-        <!--<Grid Grid.Row="1">
+
+        <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="0.7*"/>
             </Grid.RowDefinitions>
 
-            --><!--<TextBox x:Name="path" Margin="100 25"/>--><!--
-            <Button Grid.Row="1" Margin="200 25" Content="Read file" FontSize="22" FontFamily="Arial" Click="Button_Click"/>
-        </Grid>-->
+            <Label Content="Enter word" FontSize="22" FontFamily="Arial" Margin="100,10,568,60"/>
+            <TextBox x:Name="tb_word" Margin="100,54,100,20"/>
+            <Button Grid.Row="1" Margin="300,21,300,21" Content="Read file" FontSize="22" FontFamily="Arial" Click="Button_Click"/>
+        </Grid>
     </Grid>
 </Window>
