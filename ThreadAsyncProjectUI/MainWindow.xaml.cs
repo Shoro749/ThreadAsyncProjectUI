@@ -9,6 +9,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 using static System.Net.WebRequestMethods;
 
 namespace ThreadAsyncProjectUI
@@ -32,12 +33,14 @@ namespace ThreadAsyncProjectUI
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(tb_path.Text)) throw new ArgumentException(nameof(tb_path.Text));
+
             word = tb_word.Text;
             List<string> files = new List<string>();
 
             await Task.Run(() =>
             {
-                GetFolders("C:\\Users\\Роман\\Downloads\\GeneralFolder", files);
+                Dispatcher.Invoke(() => GetFolders(tb_path.Text, files));
                 countFiles = files.Count;
                 Parallel.ForEach(files, (file) => ReadFile(file).Wait());
             });
