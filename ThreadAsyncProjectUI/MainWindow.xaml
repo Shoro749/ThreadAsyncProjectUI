@@ -5,8 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ThreadAsyncProjectUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="470" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Label Width="200" Height="30" Content="Product name" FontSize="18" FontFamily="Arial" Margin="33,10,34,394" />
+        <TextBox x:Name="tb_name" Width="200" Height="30" Margin="33,40,34,364"/>
+        <Label Width="200" Height="30" Content="Product price" FontSize="18" FontFamily="Arial" Margin="33,75,34,329" />
+        <TextBox x:Name="tb_price" Width="200" Height="30" Margin="33,110,34,294"/>
+        <Label Width="200" Height="30" Content="Product brand" FontSize="18" FontFamily="Arial" Margin="33,145,34,259" />
+        <TextBox x:Name="tb_brand" Width="200" Height="30" Margin="33,175,34,229"/>
+        <Label Width="200" Height="30" Content="Product category" FontSize="18" FontFamily="Arial" Margin="33,210,34,194" />
+        <TextBox x:Name="tb_category" Width="200" Height="30" Margin="33,240,34,164"/>
+        <Label Width="200" Height="30" Content="Product description" FontSize="18" FontFamily="Arial" Margin="33,275,34,129" />
+        <TextBox x:Name="tb_desc" Width="200" Height="30" Margin="33,305,34,99"/>
+        <Button Content="Add" FontSize="18" FontFamily="Arial" Width="200" Height="35" Margin="33,365,34,34" Click="Add_Click"/>
+
+        <DataGrid x:Name="dataGrid" Grid.Column="1"/>
     </Grid>
 </Window>
