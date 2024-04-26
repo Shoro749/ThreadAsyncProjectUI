@@ -55,5 +55,6 @@ public partial class MainWindow : Window
         Product product = new Product { Name = tb_name.Text, Price = Convert.ToInt32(tb_price.Text), Info = productInfo };
         _dataContext.Product.AddAsync(product);
         _dataContext.SaveChanges();
+        dataGrid.ItemsSource = _dataContext.Product.ToList();
     }
 }
